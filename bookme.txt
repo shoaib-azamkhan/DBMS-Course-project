@@ -1,0 +1,33 @@
+SELECT * FROM Seat
+where FlightID = 1 
+And SeatStatus = 'Available';
+
+INSERT into Booking 
+(FlightID,CustomerID,SeatID,BookingDate,BookingStatus)
+VALUES(1,1,1,GETDATE(),'confirmed');
+
+SELECT * FROM Booking;
+
+UPDATE Seat 
+SET SeatStatus = 'BOOKED'
+WHERE SeatID = 1;
+
+SELECT * FROM Seat
+
+UPDATE Flight
+SET AvailableSeats = AvailableSeats - 1
+WHERE FlightID=1;
+
+SELECT * FROM Flight
+
+INSERT INTO Payment
+(BookingID,Amount,PaymentMethod,PaymentDate,TransactionDate)
+VALUES
+(1,50000,'CREDIT CARD',GETDATE(),GETDATE());
+
+SELECT * FROM Payment
+
+SELECT c.name,f.flightnumber,b.bookingstatus
+from Booking b
+JOin Customer c On b.CustomerID = c.CustomerID
+JOin flight f ON b.FlightID = f.FlightID;
